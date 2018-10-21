@@ -54,7 +54,7 @@ public class HighScoreCommand extends CommandHandler {
         }
 
         if (args.length > 1) {
-            System.out.println("Too many arguments, expected: <play-number>");
+            System.out.println("Too many arguments, expected: [play-number]");
             return 1;
         }
         return 0;
