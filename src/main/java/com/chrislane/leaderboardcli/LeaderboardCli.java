@@ -2,6 +2,7 @@ package com.chrislane.leaderboardcli;
 
 import com.chrislane.leaderboardcli.commands.CommandRunner;
 import com.chrislane.leaderboardcli.commands.HelpCommand;
+import com.chrislane.leaderboardcli.commands.HighScoreCommand;
 import com.chrislane.leaderboardcli.commands.ScoreCommand;
 import com.chrislane.leaderboardcli.language.LanguageHandler;
 
@@ -22,6 +23,7 @@ public class LeaderboardCli {
         // Register commands
         runner.registerCommand("help", new HelpCommand());
         runner.registerCommand("score", new ScoreCommand(currentState, history));
+        runner.registerCommand("highest-alltime-score", new HighScoreCommand(history));
 
         // Read command input
         while (input.hasNextLine()) {
