@@ -24,3 +24,9 @@ test {
         events "passed", "skipped", "failed"
     }
 }
+
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.chrislane.leaderboardcli.LeaderboardCli'
+    standardInput = System.in
+}
