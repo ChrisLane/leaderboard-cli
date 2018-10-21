@@ -3,6 +3,7 @@ package com.chrislane.leaderboardcli.commands;
 import com.chrislane.leaderboardcli.Player;
 import com.chrislane.leaderboardcli.language.LanguageHandler;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ScoreCommand extends CommandHandler {
@@ -64,7 +65,7 @@ public class ScoreCommand extends CommandHandler {
     }
 
     private int getRank(Player player) {
-        players.sort(Player::compareTo);
+        players.sort(Comparator.reverseOrder());
         return players.indexOf(player) + 1;
     }
 
