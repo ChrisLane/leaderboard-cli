@@ -1,8 +1,8 @@
 package com.chrislane.leaderboardcli.commands;
 
-public class CommandTuple {
-    String command;
-    CommandHandler commandHandler;
+class CommandTuple {
+    private final String command;
+    private final CommandHandler commandHandler;
 
     public CommandTuple(String command, CommandHandler commandHandler) {
         this.command = command;

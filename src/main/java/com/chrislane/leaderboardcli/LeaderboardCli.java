@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class LeaderboardCli {
+class LeaderboardCli {
     private final static Scanner input = new Scanner(System.in);
     private final static CommandRunner runner = new CommandRunner();
     private final static List<Player> history = new ArrayList<>();

@@ -3,7 +3,7 @@ package com.chrislane.leaderboardcli.commands;
 import java.util.*;
 
 public class CommandRunner {
-    private List<CommandTuple> commands = new ArrayList<>();
+    private final List<CommandTuple> commands = new ArrayList<>();
 
     public void registerCommand(String command, CommandHandler commandHandler) {
         commands.add(new CommandTuple(command, commandHandler));
@@ -17,10 +17,10 @@ public class CommandRunner {
         return getCommandHandler(input[0]).isPresent();
     }
 
-    public Optional<CommandHandler> getCommandHandler(String command) {
+    private Optional<CommandHandler> getCommandHandler(String command) {
         return commands.stream()
-                .filter(commandTuple -> commandTuple.command.equals(command))
+                .filter(commandTuple -> commandTuple.getCommand().equals(command))
                 .findAny()
-                .map(commandTuple -> commandTuple.commandHandler);
+                .map(CommandTuple::getCommandHandler);
     }
 }

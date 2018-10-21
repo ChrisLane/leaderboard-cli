@@ -3,7 +3,7 @@ package com.chrislane.leaderboardcli;
 import javax.annotation.Nonnull;
 
 public class Player implements Comparable<Player> {
-    private String name;
+    private final String name;
     private int score;
 
     public Player(String name, int score) {

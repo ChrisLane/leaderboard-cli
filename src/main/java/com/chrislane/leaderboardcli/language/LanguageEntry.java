@@ -1,8 +1,8 @@
 package com.chrislane.leaderboardcli.language;
 
-public class LanguageEntry {
-    private String key;
-    private String value;
+class LanguageEntry {
+    private final String key;
+    private final String value;
 
     public LanguageEntry(String key, String value) {
         this.key = key;
