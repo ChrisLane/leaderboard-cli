@@ -52,6 +52,11 @@ public class HighScoreCommand extends CommandHandler {
             System.out.println("No scores have been entered yet");
             return 1;
         }
+
+        if (args.length > 1) {
+            System.out.println("Too many arguments, expected: <play-number>");
+            return 1;
+        }
         return 0;
     }
 }
