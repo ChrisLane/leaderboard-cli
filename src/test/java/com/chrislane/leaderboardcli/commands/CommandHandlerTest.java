@@ -19,11 +19,11 @@ public class CommandHandlerTest {
             }
 
             @Override
-            int checkCommand() {
+            boolean checkCommand() {
                 if (args.length == 0) {
-                    return 0;
+                    return true;
                 } else {
-                    return 1;
+                    return false;
                 }
             }
         };

@@ -17,8 +17,8 @@ public class CommandRunnerTest {
             }
 
             @Override
-            int checkCommand() {
-                return 0;
+            boolean checkCommand() {
+                return true;
             }
         });
 
