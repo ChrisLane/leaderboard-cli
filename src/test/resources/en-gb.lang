@@ -1,0 +1,8 @@
+key1=value1
+key2=value2
+key3=value3
+add=Play %d - %s enters the leaderboard at rank %d
+rank-drop=Play %d - %s drops from rank %d to %d, below %s
+rank-climb=Play %d - %s climbs from rank %d to %d, above %s
+rank-unchanged=Play %d - %s stays at rank %d
+high-score=%s reached their highest score of %d on Play %d
