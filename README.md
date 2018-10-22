@@ -12,9 +12,12 @@ The Jar file can be found in `./build/libs/`.
 To run the included tests run `./gradlew test` or `gradlew.bat test`
 
 ## Using the program
-Run the program Jar using `java -jar {jar-name}`.\
+1. Grab the [latest release](https://github.com/ChrisLane/leaderboard-cli/releases/latest).
+1. Run the program Jar using `java -jar {jar-name}`.
+
 Alternatively, build and run using `./gradlew run` or `gradlew.bat run`.
 
+### Commands
 To set a person's score:\
 `score <name> <score>`
 
