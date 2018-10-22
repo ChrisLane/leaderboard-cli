@@ -3,7 +3,7 @@ package com.chrislane.leaderboardcli.commands;
 public class HelpCommand extends CommandHandler {
     @Override
     void doCommandLogic() {
-        System.out.println("Help info");
+        System.out.println("Find usage instructions at https://github.com/ChrisLane/leaderboard-cli");
     }
 
     @Override
