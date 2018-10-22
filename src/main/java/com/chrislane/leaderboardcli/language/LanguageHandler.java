@@ -11,13 +11,17 @@ import java.util.stream.Stream;
 
 public class LanguageHandler {
     private final static LanguageHandler instance = new LanguageHandler();
-    private final static List<LanguageEntry> language = new ArrayList<>();
+    private List<LanguageEntry> language = new ArrayList<>();
 
     public static LanguageHandler getInstance() {
         return instance;
     }
 
-    private LanguageHandler() {
+    public LanguageHandler() {
+    }
+
+    public LanguageHandler(List<LanguageEntry> language) {
+        this.language = language;
     }
 
     public String getEntry(String key) {
@@ -37,7 +41,7 @@ public class LanguageHandler {
         }
     }
 
-    private void addLineToLanguage(String line) {
+    public void addLineToLanguage(String line) {
         String[] lineElements = line.split("=", 2);
         if (lineElements.length == 2) {
             language.add(new LanguageEntry(lineElements[0], lineElements[1]));
