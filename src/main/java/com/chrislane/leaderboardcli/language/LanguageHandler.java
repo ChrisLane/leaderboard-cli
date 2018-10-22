@@ -1,12 +1,10 @@
 package com.chrislane.leaderboardcli.language;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.nio.file.*;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class LanguageHandler {
@@ -43,8 +41,18 @@ public class LanguageHandler {
     }
 
     public void loadLanguageFromFile() {
-        try (Stream<String> stream = Files.lines(Paths.get(getClass().getResource("/en-gb.lang").toURI()))) {
-            stream.forEach(this::addLineToLanguage);
+        try {
+            URI fileUri = getClass().getResource("/en-gb.lang").toURI();
+            try (Stream<String> stream = Files.lines(Paths.get(fileUri))) {
+                stream.forEach(this::addLineToLanguage);
+            } catch (FileSystemNotFoundException ignored) {
+                Map<String, String> env = new HashMap<>();
+                env.put("create", "true");
+                FileSystems.newFileSystem(fileUri, env);
+                try (Stream<String> stream = Files.lines(Paths.get(fileUri))) {
+                    stream.forEach(this::addLineToLanguage);
+                }
+            }
         } catch (URISyntaxException | IOException e) {
             System.err.println("Failed to load language file");
             e.printStackTrace();
