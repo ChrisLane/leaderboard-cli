@@ -55,7 +55,7 @@ public class BoardCommand extends CommandHandler {
             try {
                 play = Integer.valueOf(args[0]);
 
-                if (play > history.size()) {
+                if (play > history.size() || play <= 0) {
                     System.out.println("Play count does not exist");
                     return false;
                 }
@@ -91,7 +91,10 @@ public class BoardCommand extends CommandHandler {
         board.sort(Comparator.reverseOrder());
         printBoard(board);
 
-        board.add(addition);
+        board.stream()
+                .filter(player -> player.getName().equals(addition.getName()))
+                .findAny()
+                .ifPresentOrElse(player -> player.setScore(addition.getScore()), () -> board.add(addition));
         board.sort(Comparator.reverseOrder());
 
         System.out.println("\nAfter Play " + play);
