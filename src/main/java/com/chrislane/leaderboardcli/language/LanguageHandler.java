@@ -48,10 +48,11 @@ public class LanguageHandler {
             } catch (FileSystemNotFoundException ignored) {
                 Map<String, String> env = new HashMap<>();
                 env.put("create", "true");
-                FileSystems.newFileSystem(fileUri, env);
+                FileSystem zipFs = FileSystems.newFileSystem(fileUri, env);
                 try (Stream<String> stream = Files.lines(Paths.get(fileUri))) {
                     stream.forEach(this::addLineToLanguage);
                 }
+                zipFs.close();
             }
         } catch (URISyntaxException | IOException e) {
             System.err.println("Failed to load language file");
