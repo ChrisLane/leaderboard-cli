@@ -16,6 +16,9 @@ public class BoardCommand extends CommandHandler {
         this.history = history;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void doCommandLogic() {
         if (args.length == 0) {
@@ -29,6 +32,7 @@ public class BoardCommand extends CommandHandler {
                 String name = historyPlayer.getName();
                 int score = historyPlayer.getScore();
 
+                // Find existing player to set their score or add as a new player
                 replay.stream()
                         .filter(player -> player.getName().equals(name))
                         .findAny()
@@ -39,28 +43,36 @@ public class BoardCommand extends CommandHandler {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    int checkCommand() {
+    boolean checkCommand() {
         if (args.length > 1) {
             System.out.println("Too many arguments, expected: [play-number]");
-            return 1;
+            return false;
         } else if (args.length == 1) {
             try {
                 play = Integer.valueOf(args[0]);
 
                 if (play > history.size()) {
                     System.out.println("Play count does not exist");
-                    return 1;
+                    return false;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Play number must be an integer");
-                return 1;
+                return false;
             }
         }
 
-        return 0;
+        return true;
     }
 
+    /**
+     * Prints the current leaderboard positions.
+     *
+     * @param board The leaderboard.
+     */
     private void printBoard(List<Player> board) {
         for (int i = 0; i < board.size(); i++) {
             Player player = board.get(i);
@@ -68,6 +80,12 @@ public class BoardCommand extends CommandHandler {
         }
     }
 
+    /**
+     * Prints the leaderboard before and after a play.
+     *
+     * @param board The leaderboard before the play.
+     * @param addition The play.
+     */
     private void printBoardAtPlay(List<Player> board, Player addition) {
         System.out.println("Before Play " + play);
         board.sort(Comparator.reverseOrder());

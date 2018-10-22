@@ -17,6 +17,9 @@ public class ScoreCommand extends CommandHandler {
         this.history = history;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void doCommandLogic() {
         players.stream()
@@ -25,11 +28,14 @@ public class ScoreCommand extends CommandHandler {
                 .ifPresentOrElse(this::setExistingPlayerScore, this::addNewPlayer);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    int checkCommand() {
+    boolean checkCommand() {
         if (args.length != 2) {
             System.out.println("Incorrect number of arguments, expected: <name> <score>");
-            return 1;
+            return false;
         }
         name = args[0];
 
@@ -37,12 +43,15 @@ public class ScoreCommand extends CommandHandler {
             score = Integer.valueOf(args[1]);
         } catch (NumberFormatException e) {
             System.out.println("Score must be an integer");
-            return 1;
+            return false;
         }
 
-        return 0;
+        return true;
     }
 
+    /**
+     * Adds the player to the current leaderboard and history.
+     */
     private void addNewPlayer() {
         // Add to current high scores
         Player player = new Player(name, score);
@@ -53,6 +62,9 @@ public class ScoreCommand extends CommandHandler {
         history.add(player.copy());
     }
 
+    /**
+     * Set a player's score in the current leaderboard and add this to the history.
+     */
     private void setExistingPlayerScore(Player player) {
         // Change current high score
         int prevRank = getRank(player);
@@ -69,12 +81,18 @@ public class ScoreCommand extends CommandHandler {
         return players.indexOf(player) + 1;
     }
 
+    /**
+     * Print the rank message where no previous rank exists.
+     */
     private void printRankMessage(int rank) {
         printRankMessage(-1, rank);
     }
 
+    /**
+     * Print the appropriate rank message depending on the change in rank.
+     */
     private void printRankMessage(int prevRank, int newRank) {
-        if (prevRank == -1) {
+        if (prevRank == -1) { // No previous rank
             printPlayerAddedMessage(newRank);
         } else if (newRank < prevRank) {
             printRankIncreaseMessage(prevRank, newRank);

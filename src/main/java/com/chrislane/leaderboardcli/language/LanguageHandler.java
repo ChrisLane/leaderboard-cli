@@ -17,13 +17,23 @@ public class LanguageHandler {
         return instance;
     }
 
-    public LanguageHandler() {
+    private LanguageHandler() {
     }
 
+    /**
+     * Do not use this, it is for testing purposes only. Instead use {@link #getInstance()}
+     *
+     * @param language The language store list.
+     */
     public LanguageHandler(List<LanguageEntry> language) {
         this.language = language;
     }
 
+    /**
+     * Find the value for a given language entry key.
+     *
+     * @return The entry value or the key if none was found.
+     */
     public String getEntry(String key) {
         Optional<LanguageEntry> entry = language.stream()
                 .filter(languageEntry -> languageEntry.getKey().equals(key))
@@ -41,6 +51,11 @@ public class LanguageHandler {
         }
     }
 
+    /**
+     * Split the key/value string into key and value and then add them as an entry in the language.
+     *
+     * @param line The key/value string.
+     */
     public void addLineToLanguage(String line) {
         String[] lineElements = line.split("=", 2);
         if (lineElements.length == 2) {

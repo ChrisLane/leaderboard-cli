@@ -23,6 +23,9 @@ public class Player implements Comparable<Player> {
         this.score = score;
     }
 
+    /**
+     * Compare players by their scores. Players with higher scores > players with lower scores.
+     */
     @Override
     public int compareTo(@Nonnull Player player) {
         return Integer.compare(score, player.getScore());
