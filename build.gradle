@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.chrislane'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 sourceCompatibility = 1.10
 
@@ -19,6 +19,15 @@ dependencies {
 
 test {
     useTestNG()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.chrislane.leaderboardcli.LeaderboardCli'
+        )
+    }
 }
 
 task run(type: JavaExec) {
