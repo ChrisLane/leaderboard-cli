@@ -1,5 +1,6 @@
 # Leaderboard CLI
 [![Build Status](https://travis-ci.com/ChrisLane/leaderboard-cli.svg?token=seVmyHexDs1EqyQQxtXx&branch=master)](https://travis-ci.com/ChrisLane/leaderboard-cli)
+
 Leaderboard CLI is a command-line interface for tracking people's scores.
 
 ## Building
